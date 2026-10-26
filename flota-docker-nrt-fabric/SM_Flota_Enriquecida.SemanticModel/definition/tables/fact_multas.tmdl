@@ -1,0 +1,139 @@
+table fact_multas
+	lineageTag: 4213c6c8-69bc-4767-aa5d-99c541c016ad
+	sourceLineageTag: [dbo].[fact_multas]
+
+	measure Coste_Multas_RRHH = SUM('fact_multas'[Importe_EUR])
+		formatString: 0
+		lineageTag: 92d82c52-d758-4d59-8f6c-f41abc49bbdb
+
+		changedProperty = Name
+
+	measure Total_Infracciones = COUNTROWS('fact_multas')
+		formatString: 0
+		lineageTag: c81fee7f-4e0c-4a87-b1d6-b6f2ab501fd0
+
+		changedProperty = Name
+
+	measure Multas_Sin_Conductor =
+			
+			CALCULATE(
+			    SUM('fact_multas'[Importe_EUR]),
+			    ISBLANK('dim_conductores'[id_empleado])
+			)
+		formatString: 0
+		lineageTag: ab06348e-5a2d-48cc-b661-3d1383581675
+
+		changedProperty = Name
+
+	column ID_Expediente
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f66e3c83-aecb-42fa-a23a-401547045e5d
+		sourceLineageTag: ID_Expediente
+		summarizeBy: none
+		sourceColumn: ID_Expediente
+
+		annotation SummarizationSetBy = Automatic
+
+	column VehicleID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 97f830d6-1ca7-4c0e-a9ff-394f7f4e9214
+		sourceLineageTag: VehicleID
+		summarizeBy: none
+		sourceColumn: VehicleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Conductor_Infractor
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b7d3de37-7400-4e11-997d-271783a6690a
+		sourceLineageTag: Conductor_Infractor
+		summarizeBy: none
+		sourceColumn: Conductor_Infractor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Hora_Infraccion
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 52922888-0066-4e5d-9a2b-798fc8127e90
+		sourceLineageTag: Fecha_Hora_Infraccion
+		summarizeBy: none
+		sourceColumn: Fecha_Hora_Infraccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno_Infraccion
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f034851f-fb6c-4024-82f4-752e1e154d69
+		sourceLineageTag: Turno_Infraccion
+		summarizeBy: none
+		sourceColumn: Turno_Infraccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Infraccion
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 338d854e-559a-499c-b9dd-fcc4faa187ea
+		sourceLineageTag: Tipo_Infraccion
+		summarizeBy: none
+		sourceColumn: Tipo_Infraccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Velocidad_Radar_kmh
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8d16a606-f5a9-49a9-acc8-ecb3742e30eb
+		sourceLineageTag: Velocidad_Radar_kmh
+		summarizeBy: sum
+		sourceColumn: Velocidad_Radar_kmh
+
+		annotation SummarizationSetBy = Automatic
+
+	column Importe_EUR
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b93ce8e3-c51d-4241-a1ae-1f951a6f3cf9
+		sourceLineageTag: Importe_EUR
+		summarizeBy: sum
+		sourceColumn: Importe_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Puntos_DGT_Retirados
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9d24bd23-4bb6-440e-a3aa-968f27b1a5ea
+		sourceLineageTag: Puntos_DGT_Retirados
+		summarizeBy: sum
+		sourceColumn: Puntos_DGT_Retirados
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 777ff5a3-e76a-4c43-8688-5ed94cf5ac58
+		sourceLineageTag: id_empleado
+		summarizeBy: none
+		sourceColumn: id_empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_multas = entity
+		mode: directLake
+		source
+			entityName: fact_multas
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

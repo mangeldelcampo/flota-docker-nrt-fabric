@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pl_procesamiento_flota_plata",
+    "description": "Actualización de datos de itinerancia de los vehículos"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6c5f9e3d-d662-80f9-42f9-8cd7d86121a3"
+  }
+}

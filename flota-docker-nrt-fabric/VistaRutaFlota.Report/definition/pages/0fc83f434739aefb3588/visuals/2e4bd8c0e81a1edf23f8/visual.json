@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "2e4bd8c0e81a1edf23f8",
+  "position": {
+    "x": 871.36363636363626,
+    "y": 242.38636363636363,
+    "z": 4000,
+    "height": 133.46590909090909,
+    "width": 306.81818181818181,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "Alertas_Carnet"
+                }
+              },
+              "queryRef": "dim_conductores.Alertas_Carnet",
+              "nativeQueryRef": "Alertas_Carnet"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_conductores"
+                  }
+                },
+                "Property": "Alertas_Carnet"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

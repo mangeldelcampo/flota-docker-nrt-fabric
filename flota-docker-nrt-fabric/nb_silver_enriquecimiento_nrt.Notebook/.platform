@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_silver_enriquecimiento_nrt"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4616a527-1f15-9bc1-47bd-e20937ef722a"
+  }
+}

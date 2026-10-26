@@ -1,0 +1,99 @@
+table dim_calendario
+	lineageTag: 2c265a8b-08e6-483c-8680-b9b5ddbb33ce
+	sourceLineageTag: [dbo].[dim_calendario]
+
+	column Fecha
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: e94d1bba-dd3a-40ae-ba16-446079bb5b49
+		sourceLineageTag: Fecha
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4fc5cafc-bfea-47d9-81a8-8b7c923144e1
+		sourceLineageTag: Anio
+		summarizeBy: sum
+		sourceColumn: Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Num
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e11180f8-823c-400b-a5fa-9aca0f90954b
+		sourceLineageTag: Mes_Num
+		summarizeBy: sum
+		sourceColumn: Mes_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Nombre
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 38d0dbaf-695c-44db-8c50-3f4331d71fad
+		sourceLineageTag: Mes_Nombre
+		summarizeBy: none
+		sourceColumn: Mes_Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6c6d2bed-f295-4ea7-b574-fa4f4416411c
+		sourceLineageTag: Trimestre
+		summarizeBy: sum
+		sourceColumn: Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 21117b14-82a4-4779-8dc0-599283cab831
+		sourceLineageTag: Dia
+		summarizeBy: sum
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Semana_Num
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8519d4a5-4784-4531-a935-324ee3c9a3a5
+		sourceLineageTag: Dia_Semana_Num
+		summarizeBy: sum
+		sourceColumn: Dia_Semana_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia_Semana_Nombre
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7a6349dc-990c-4055-a855-4f990247c294
+		sourceLineageTag: Dia_Semana_Nombre
+		summarizeBy: none
+		sourceColumn: Dia_Semana_Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_calendario = entity
+		mode: directLake
+		source
+			entityName: dim_calendario
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,68 @@
+relationship e07a9ca0-b749-0d99-93ae-bf358b0a3ad2
+	fromColumn: fact_control_jornada.Fecha_Fichaje
+	toColumn: dim_calendario.Fecha
+
+relationship 616ceb7e-d69f-a177-7256-7d4a8080ae14
+	fromColumn: fact_mantenimientos.Fecha_Entrada_Taller
+	toColumn: dim_calendario.Fecha
+
+relationship 1b04b887-1017-91b2-5f9d-b3fcbef4ec1b
+	fromColumn: fact_incidencias.Fecha_Apertura
+	toColumn: dim_calendario.Fecha
+
+relationship dae41a8c-df85-04aa-b0f1-5ad84b0f3499
+	fromColumn: fact_mantenimientos.ID_Proveedor
+	toColumn: dim_proveedores.ID_Proveedor
+
+relationship 907fd8d0-e75b-fc7b-27f1-58db024d40af
+	fromColumn: telemetria_enriquecida.id_empleado
+	toColumn: dim_conductores.id_empleado
+
+relationship f984cbcc-ef5a-9b0d-77ab-2f0206edbebb
+	fromColumn: fact_control_jornada.id_empleado
+	toColumn: dim_conductores.id_empleado
+
+relationship b9454758-920b-8865-4f37-72aaed181d13
+	fromColumn: fact_incidencias.id_empleado_reportador
+	toColumn: dim_conductores.id_empleado
+
+relationship 52a435c7-59f0-d4f6-49c1-98eeaf9b645d
+	fromColumn: fact_multas.id_empleado
+	toColumn: dim_conductores.id_empleado
+
+relationship c3d12225-c9fb-769f-3e1c-aaf9992fe637
+	fromColumn: telemetria_enriquecida.VehicleID
+	toColumn: dim_vehiculos_tecnica.VehicleID
+
+relationship 845fc7ea-8dc0-6f3f-e63c-139d038256df
+	fromColumn: fact_checklist_diario.VehicleID
+	toColumn: dim_vehiculos_tecnica.VehicleID
+
+relationship 861b2fba-3f2c-ae1b-c1a4-7fe127d185c0
+	fromColumn: fact_mantenimientos.VehicleID
+	toColumn: dim_vehiculos_tecnica.VehicleID
+
+relationship 14e22044-b3c1-cbc0-4101-f10a7d60ad34
+	fromColumn: fact_incidencias.VehicleID
+	toColumn: dim_vehiculos_tecnica.VehicleID
+
+relationship bd11c26f-cddc-dec2-53ed-a86b6dfb3b91
+	fromColumn: telemetria_enriquecida.DTC_Code
+	toColumn: dim_dtc_codigos.DTC_Code
+
+relationship 6b5c6a08-17bf-2e82-d3d7-6087b873c7dc
+	fromColumn: fact_multas.VehicleID
+	toColumn: dim_vehiculos_tecnica.VehicleID
+
+relationship b7e6779f-a4bc-6dd8-972b-d5f865ba3ea4
+	fromColumn: fact_checklist_diario.id_empleado
+	toColumn: dim_conductores.id_empleado
+
+relationship 24a318ec-9932-cc84-40e4-cfbed990abaf
+	fromColumn: telemetria_enriquecida.Fecha_Evento
+	toColumn: dim_calendario.Fecha
+
+relationship 43ec9d70-4259-c45f-4ef3-93852998a074
+	fromColumn: telemetria_enriquecida.Hora
+	toColumn: dim_hora.Hora
+

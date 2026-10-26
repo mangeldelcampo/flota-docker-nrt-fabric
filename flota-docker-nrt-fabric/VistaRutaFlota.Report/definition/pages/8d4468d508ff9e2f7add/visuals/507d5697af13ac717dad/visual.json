@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "507d5697af13ac717dad",
+  "position": {
+    "x": 0,
+    "y": 463.448275862069,
+    "z": 8000,
+    "height": 158.04226918798665,
+    "width": 281.91323692992216,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "telemetria_enriquecida"
+                        }
+                      },
+                      "Property": "Hora_Evento"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Min(telemetria_enriquecida.Hora_Evento)",
+              "nativeQueryRef": "Última fecha: Hora_Evento"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "telemetria_enriquecida"
+                      }
+                    },
+                    "Property": "Hora_Evento"
+                  }
+                },
+                "Function": 4
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "432d14003190e674855b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "telemetria_enriquecida"
+                  }
+                },
+                "Property": "Hora_Evento"
+              }
+            },
+            "Function": 4
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

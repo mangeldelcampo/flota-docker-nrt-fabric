@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "VistaRutaFlota"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7ec5b240-d0cf-bc6d-4ee4-7f1b9bdf66aa"
+  }
+}

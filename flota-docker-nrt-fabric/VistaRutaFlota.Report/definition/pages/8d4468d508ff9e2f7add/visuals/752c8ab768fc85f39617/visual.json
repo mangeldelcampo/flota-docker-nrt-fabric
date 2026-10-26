@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "752c8ab768fc85f39617",
+  "position": {
+    "x": 492.30769230769232,
+    "y": 266.98224852071007,
+    "z": 3000,
+    "height": 96.568047337278117,
+    "width": 159.05325443786984,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "Vehiculos activos"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.Vehiculos activos",
+              "nativeQueryRef": "Vehiculos activos"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "telemetria_enriquecida"
+                  }
+                },
+                "Property": "Vehiculos activos"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

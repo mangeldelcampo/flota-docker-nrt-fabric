@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9be3de0a152007a257ee",
+  "position": {
+    "x": 0,
+    "y": 95.11363636363636,
+    "z": 2,
+    "height": 277.6704545454545,
+    "width": 328.2954545454545,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "listSlicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "VehicleID"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.VehicleID",
+              "nativeQueryRef": "VehicleID",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "t",
+                    "Entity": "telemetria_enriquecida",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "t"
+                                }
+                              },
+                              "Property": "VehicleID"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'VEH-1018'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "31138219356cacc8ff74",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "telemetria_enriquecida"
+              }
+            },
+            "Property": "VehicleID"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

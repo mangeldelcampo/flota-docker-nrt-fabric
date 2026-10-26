@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "fb33987f8ac08b001184",
+  "position": {
+    "x": 492.30769230769232,
+    "y": 363.5502958579882,
+    "z": 4000,
+    "height": 100.35502958579883,
+    "width": 159.05325443786984,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "Velocidad_Media_Flota"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.Velocidad_Media_Flota",
+              "nativeQueryRef": "Velocidad_Media_Flota"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "telemetria_enriquecida"
+                  }
+                },
+                "Property": "Velocidad_Media_Flota"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

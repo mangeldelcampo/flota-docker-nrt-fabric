@@ -1,0 +1,97 @@
+table fact_checklist_diario
+	lineageTag: 208f78b2-9e4f-4b14-a870-c46894c6a669
+	sourceLineageTag: [dbo].[fact_checklist_diario]
+
+	measure Checklists_Con_Danos =
+			
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('fact_checklist_diario'),
+			        'fact_checklist_diario'[Estado_Visual] = "Con Daños"
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: e0d12189-8fb2-4a9c-acdf-5bd71d41f49c
+
+		changedProperty = Name
+
+	column VehicleID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 02023e03-6142-42bd-97bc-07565e64dfdf
+		sourceLineageTag: VehicleID
+		summarizeBy: none
+		sourceColumn: VehicleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno_Asignado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ea917b1e-e9c0-4c7a-b47a-1cc319015886
+		sourceLineageTag: Turno_Asignado
+		summarizeBy: none
+		sourceColumn: Turno_Asignado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora_Checklist
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5f254dcd-dca1-49ed-925e-b99ef9b79231
+		sourceLineageTag: Hora_Checklist
+		summarizeBy: none
+		sourceColumn: Hora_Checklist
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado_Visual
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a514349e-8731-4c07-889d-be0e9e91df32
+		sourceLineageTag: Estado_Visual
+		summarizeBy: none
+		sourceColumn: Estado_Visual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descripcion_Dano
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 81c7d039-6db1-43da-b17b-10d15ab13817
+		sourceLineageTag: Descripcion_Dano
+		summarizeBy: none
+		sourceColumn: Descripcion_Dano
+
+		annotation SummarizationSetBy = Automatic
+
+	column URL_Foto_Dano
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fa0e71a8-14d2-4ea2-9f3f-63b25d63e97e
+		sourceLineageTag: URL_Foto_Dano
+		summarizeBy: none
+		sourceColumn: URL_Foto_Dano
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 04ea4b0d-9cef-40e3-a749-fa6cf5d257e5
+		sourceLineageTag: id_empleado
+		summarizeBy: none
+		sourceColumn: id_empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_checklist_diario = entity
+		mode: directLake
+		source
+			entityName: fact_checklist_diario
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

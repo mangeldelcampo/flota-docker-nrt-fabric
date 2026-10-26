@@ -1,0 +1,240 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d748d193f20a93ca9380",
+  "position": {
+    "x": 0,
+    "y": 504.74226804123708,
+    "z": 1,
+    "height": 574.020618556701,
+    "width": 1786.3917525773195,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "VehicleID"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.VehicleID",
+              "nativeQueryRef": "VehicleID",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "Conductor_Activo"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.Conductor_Activo",
+              "nativeQueryRef": "Conductor_Activo",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "Hora_Evento"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.Hora_Evento",
+              "nativeQueryRef": "Hora_Evento",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "telemetria_enriquecida"
+                        }
+                      },
+                      "Property": "FuelLevel"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(telemetria_enriquecida.FuelLevel)",
+              "nativeQueryRef": "Suma de FuelLevel"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'🚨 Vehículos en Reserva Crítica (<15%)'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f634844892352bbdc941",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "telemetria_enriquecida"
+              }
+            },
+            "Property": "FuelLevel"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "telemetria_enriquecida",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "t"
+                        }
+                      },
+                      "Property": "FuelLevel"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "58f8337319da46418514",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "telemetria_enriquecida"
+              }
+            },
+            "Property": "Hora_Evento"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1edde297445266135ea6",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "telemetria_enriquecida"
+              }
+            },
+            "Property": "VehicleID"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a901d823455ba46c5ba0",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "telemetria_enriquecida"
+              }
+            },
+            "Property": "Conductor_Activo"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6e3407c9285484deb0ec",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "telemetria_enriquecida"
+                  }
+                },
+                "Property": "FuelLevel"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

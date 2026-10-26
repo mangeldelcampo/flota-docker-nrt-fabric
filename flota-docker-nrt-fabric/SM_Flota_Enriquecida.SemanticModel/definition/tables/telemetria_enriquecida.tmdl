@@ -1,0 +1,273 @@
+table telemetria_enriquecida
+	lineageTag: 8fccbe0b-1b2a-4451-8d9c-e5bba750b2d4
+	sourceLineageTag: [dbo].[telemetria_enriquecida]
+
+	measure 'Vehiculos activos' =
+			
+			COALESCE(
+			    DISTINCTCOUNT('telemetria_enriquecida'[VehicleID]),
+			    0
+			)
+		formatString: 0
+		lineageTag: a673eccf-a327-46c4-b67b-655c36e6787c
+
+		changedProperty = Name
+
+	measure Velocidad_Media_Flota =
+			
+			ROUND(
+			    COALESCE(
+			        AVERAGE('telemetria_enriquecida'[Speed]),
+			        0
+			    ),
+			    1
+			)
+		lineageTag: bf21f6d0-c8fc-43da-af6a-d1043ba9d28c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vehiculos_Combustible_Critico_Global =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT('telemetria_enriquecida'[VehicleID]),
+			        'telemetria_enriquecida'[FuelLevel] < 15,
+			        ALL('telemetria_enriquecida'[VehicleID]),
+			        ALL('dim_vehiculos_tecnica'[VehicleID])
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 7c68f655-bebb-4c2b-ac9e-797fe1c3fc52
+
+		changedProperty = Name
+
+	measure Es_Ultima_Posicion_En_Contexto = ```
+			
+			VAR MaxEventoVehiculoContexto = 
+			    CALCULATE(
+			        MAX('telemetria_enriquecida'[Hora_Evento]),
+			        ALLEXCEPT(
+			            'telemetria_enriquecida', 
+			            'telemetria_enriquecida'[VehicleID],
+			            'dim_calendario'[Fecha], 
+			            'dim_hora'[Hora] 
+			        )
+			    )
+			RETURN 
+			    IF(
+			        SELECTEDVALUE('telemetria_enriquecida'[Hora_Evento]) = MaxEventoVehiculoContexto,
+			        1,
+			        0
+			    )
+			```
+		formatString: 0
+		lineageTag: 6d282833-dd2b-406a-a141-7b066aa08e78
+
+		changedProperty = Name
+
+	measure Titulo_Cabecera_Operaciones =
+			
+			"Torre de Control de Flota | Fecha: " & [Fechas_Seleccionadas] & " | Horas: " & [Horas_Seleccionadas]
+		lineageTag: 441523b4-f89e-43b5-a711-f0e3ba602b97
+
+		changedProperty = Name
+
+	measure Lista_Vehiculos_Criticos = ```
+			
+			VAR VehiculosBajoNivel = 
+			    CALCULATETABLE(
+			        VALUES('telemetria_enriquecida'[VehicleID]),
+			        'telemetria_enriquecida'[FuelLevel] < 15
+			    )
+			VAR Conteo = COUNTROWS(VehiculosBajoNivel)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Conteo = 0, "🟢 Flota OK (Sin unidades en reserva)",
+			    CONCATENATEX(VehiculosBajoNivel, 'telemetria_enriquecida'[VehicleID], ", ")
+			)
+			```
+		lineageTag: 6ede0e2e-3c00-4b39-a90d-e475b83d9598
+
+		changedProperty = Name
+
+	measure Filtro_Alerta_Combustible =
+			
+			IF(
+			    CALCULATE(
+			        MAX('telemetria_enriquecida'[FuelLevel]),
+			        ALL('dim_vehiculos_tecnica'[VehicleID]),
+			        ALL('telemetria_enriquecida'[VehicleID])
+			    ) < 15,
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 94a331c3-f035-45b7-b17e-606bdbbf69ee
+
+		changedProperty = Name
+
+	column VehicleID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 109ce3e2-1ed6-4e3a-bc40-66d467a11419
+		sourceLineageTag: VehicleID
+		summarizeBy: none
+		sourceColumn: VehicleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora_Evento
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ef3296c2-e892-4c29-9563-2c5328089f23
+		sourceLineageTag: Hora_Evento
+		summarizeBy: none
+		sourceColumn: Hora_Evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		sourceProviderType: float
+		lineageTag: f8972df5-bcd5-44ca-b06d-163882ee6237
+		sourceLineageTag: Latitude
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 3ec8cfa7-c327-4e5c-b24d-ae81fa2bac39
+		sourceLineageTag: Longitude
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Speed
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 3c9b13f7-98bd-41df-9d35-da5d59ca03ec
+		sourceLineageTag: Speed
+		summarizeBy: sum
+		sourceColumn: Speed
+
+		annotation SummarizationSetBy = Automatic
+
+	column FuelLevel
+		dataType: double
+		sourceProviderType: float
+		lineageTag: b56faca6-3484-433e-a1f0-c3b2fde17bdd
+		sourceLineageTag: FuelLevel
+		summarizeBy: sum
+		sourceColumn: FuelLevel
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DTC_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 32706ef1-8acd-4ea8-b12c-478d8e9f3457
+		sourceLineageTag: DTC_Code
+		summarizeBy: none
+		sourceColumn: DTC_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Conductor_Activo
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3d69d9bd-7679-4458-9d07-a263bc961939
+		sourceLineageTag: Conductor_Activo
+		summarizeBy: none
+		sourceColumn: Conductor_Activo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Experiencia_Cond
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fe50c00d-60e7-4e10-b36d-5c0e71525bdf
+		sourceLineageTag: Experiencia_Cond
+		summarizeBy: sum
+		sourceColumn: Experiencia_Cond
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno_RRHH
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4128228f-0e19-4017-94b3-3c717084093b
+		sourceLineageTag: Turno_RRHH
+		summarizeBy: none
+		sourceColumn: Turno_RRHH
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora_Procesamiento_Silver
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: e4866144-4da1-4647-a66f-6d02998efd84
+		sourceLineageTag: Hora_Procesamiento_Silver
+		summarizeBy: none
+		sourceColumn: Hora_Procesamiento_Silver
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: dde40026-ba73-4a0c-bace-5e95165add28
+		sourceLineageTag: id_empleado
+		summarizeBy: none
+		sourceColumn: id_empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Evento
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: f4eec809-1b5a-47f0-ac34-92994e71dbf3
+		sourceLineageTag: Fecha_Evento
+		summarizeBy: none
+		sourceColumn: Fecha_Evento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 29db2c2e-0130-401e-ac92-76e1ac2e2d4f
+		sourceLineageTag: Hora
+		summarizeBy: none
+		sourceColumn: Hora
+
+		annotation SummarizationSetBy = Automatic
+
+	partition telemetria_enriquecida = entity
+		mode: directLake
+		source
+			entityName: telemetria_enriquecida
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

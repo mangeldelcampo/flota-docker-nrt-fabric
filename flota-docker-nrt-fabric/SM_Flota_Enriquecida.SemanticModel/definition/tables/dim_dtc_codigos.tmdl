@@ -1,0 +1,63 @@
+table dim_dtc_codigos
+	lineageTag: 359c3928-e58c-4572-a355-f3de9b2de349
+	sourceLineageTag: [dbo].[dim_dtc_codigos]
+
+	column DTC_Code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 574c2a52-dc4f-4763-8b25-405dcc9eff66
+		sourceLineageTag: DTC_Code
+		summarizeBy: none
+		sourceColumn: DTC_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sistema
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d5fafb2e-bddd-42c0-9f0e-c5232136bc65
+		sourceLineageTag: Sistema
+		summarizeBy: none
+		sourceColumn: Sistema
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descripcion_Averia
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 19bd46ff-ff17-435d-b619-ab6ffd40a09f
+		sourceLineageTag: Descripcion_Averia
+		summarizeBy: none
+		sourceColumn: Descripcion_Averia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gravedad
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0d2d5d53-747e-4c6e-a492-45970803a022
+		sourceLineageTag: Gravedad
+		summarizeBy: none
+		sourceColumn: Gravedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column Accion_Requerida
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3c6aaa9b-605c-43cd-8655-111a23ff389a
+		sourceLineageTag: Accion_Requerida
+		summarizeBy: none
+		sourceColumn: Accion_Requerida
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_dtc_codigos = entity
+		mode: directLake
+		source
+			entityName: dim_dtc_codigos
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,145 @@
+table fact_mantenimientos
+	lineageTag: cc99d617-fb73-49b2-accd-c2c16cf7ff69
+	sourceLineageTag: [dbo].[fact_mantenimientos]
+
+	measure Gasto_Total_Mantenimiento =
+			
+			COALESCE(
+			    SUM('fact_mantenimientos'[Coste_Total_Intervencion]),
+			    0
+			)
+		lineageTag: 7e66728b-7154-4ee6-a972-ce45154641e5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Dias_Inmovilizado =
+			
+			COALESCE(
+			    SUM('fact_mantenimientos'[Dias_Inmovilizado]),
+			    0
+			)
+		formatString: 0
+		lineageTag: c8c6d99d-d461-4c88-a3c3-646ffb487531
+
+		changedProperty = Name
+
+	column ID_Orden_Trabajo
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 61997856-7e02-420f-9892-277880c63c9c
+		sourceLineageTag: ID_Orden_Trabajo
+		summarizeBy: none
+		sourceColumn: ID_Orden_Trabajo
+
+		annotation SummarizationSetBy = Automatic
+
+	column VehicleID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 05b5b953-61d3-464d-96d8-6ccc6bbcc275
+		sourceLineageTag: VehicleID
+		summarizeBy: none
+		sourceColumn: VehicleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_Proveedor
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7673c4df-e65f-45d5-bf8b-79b63e30499f
+		sourceLineageTag: ID_Proveedor
+		summarizeBy: none
+		sourceColumn: ID_Proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Entrada_Taller
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 176f243e-0d63-40eb-a7b6-60b86398be39
+		sourceLineageTag: Fecha_Entrada_Taller
+		summarizeBy: none
+		sourceColumn: Fecha_Entrada_Taller
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Mantenimiento
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7d9f28ce-87ae-4a28-8de6-42f088825f2f
+		sourceLineageTag: Tipo_Mantenimiento
+		summarizeBy: none
+		sourceColumn: Tipo_Mantenimiento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coste_Materiales_EUR
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 4d214bf3-7bfc-4c4c-89ba-368529939389
+		sourceLineageTag: Coste_Materiales_EUR
+		summarizeBy: sum
+		sourceColumn: Coste_Materiales_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Coste_ManoObra_EUR
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 1da47978-787a-4aef-b5c1-cb823f9f260f
+		sourceLineageTag: Coste_ManoObra_EUR
+		summarizeBy: sum
+		sourceColumn: Coste_ManoObra_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dias_Inmovilizado
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a3e26639-140b-43ad-a352-178fe895ce84
+		sourceLineageTag: Dias_Inmovilizado
+		summarizeBy: sum
+		sourceColumn: Dias_Inmovilizado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coste_Total_Intervencion
+		dataType: double
+		sourceProviderType: float
+		lineageTag: cce06956-3219-46a4-9747-2ed73d17ac44
+		sourceLineageTag: Coste_Total_Intervencion
+		summarizeBy: sum
+		sourceColumn: Coste_Total_Intervencion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Fecha_Salida_Taller
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 4997fb12-ddaa-437b-8d27-0e4ef9a0b763
+		sourceLineageTag: Fecha_Salida_Taller
+		summarizeBy: none
+		sourceColumn: Fecha_Salida_Taller
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_mantenimientos = entity
+		mode: directLake
+		source
+			entityName: fact_mantenimientos
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

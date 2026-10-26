@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "05cb4e848ab3e22e2660",
+  "position": {
+    "x": 0,
+    "y": 481.70454545454544,
+    "z": 1,
+    "height": 171.81818181818181,
+    "width": 196.36363636363635,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "telemetria_enriquecida"
+                        }
+                      },
+                      "Property": "Speed"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(telemetria_enriquecida.Speed)",
+              "nativeQueryRef": "Promedio de Speed"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "telemetria_enriquecida"
+                      }
+                    },
+                    "Property": "Speed"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "88fad0077fc820ef0530",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "telemetria_enriquecida"
+                  }
+                },
+                "Property": "Speed"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

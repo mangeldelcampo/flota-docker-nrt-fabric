@@ -1,0 +1,95 @@
+table fact_incidencias
+	lineageTag: c6b4fb8a-e173-4a01-a031-427e4841814e
+	sourceLineageTag: [dbo].[fact_incidencias]
+
+	column id_ticket
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5000afdf-c0d8-4c19-b289-f4055a8062bb
+		sourceLineageTag: id_ticket
+		summarizeBy: none
+		sourceColumn: id_ticket
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Apertura
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: d60076e1-2d40-4ff8-8eff-f9289efc9b2d
+		sourceLineageTag: Fecha_Apertura
+		summarizeBy: none
+		sourceColumn: Fecha_Apertura
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Resolucion
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 5346c5eb-9062-4319-b8ac-8bb00dce1757
+		sourceLineageTag: Fecha_Resolucion
+		summarizeBy: none
+		sourceColumn: Fecha_Resolucion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 94cb49ea-ce8d-4793-b026-9e714a7cfb72
+		sourceLineageTag: Estado
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridad
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2bf18da0-9b83-41ee-92e2-e9db39f4578b
+		sourceLineageTag: Prioridad
+		summarizeBy: none
+		sourceColumn: Prioridad
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado_reportador
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e67a6e04-29f7-46ca-b5c4-a9ec8ed9c68c
+		sourceLineageTag: id_empleado_reportador
+		summarizeBy: none
+		sourceColumn: id_empleado_reportador
+
+		annotation SummarizationSetBy = Automatic
+
+	column VehicleID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: de7c3322-a8b8-43c2-9b3b-a74ba060f5f2
+		sourceLineageTag: VehicleID
+		summarizeBy: none
+		sourceColumn: VehicleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Incidencia
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c1767b3c-b14e-4228-b786-7d8d9c765cad
+		sourceLineageTag: Tipo_Incidencia
+		summarizeBy: none
+		sourceColumn: Tipo_Incidencia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_incidencias = entity
+		mode: directLake
+		source
+			entityName: fact_incidencias
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

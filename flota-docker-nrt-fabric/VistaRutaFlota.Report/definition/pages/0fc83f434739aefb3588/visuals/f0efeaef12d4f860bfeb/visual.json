@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f0efeaef12d4f860bfeb",
+  "position": {
+    "x": 52.159090909090907,
+    "y": 242.38636363636363,
+    "z": 2000,
+    "height": 133.46590909090909,
+    "width": 260.7954545454545,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_multas"
+                    }
+                  },
+                  "Property": "Coste_Multas_RRHH"
+                }
+              },
+              "queryRef": "fact_multas.Coste_Multas_RRHH",
+              "nativeQueryRef": "Coste_Multas_RRHH"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_multas"
+                  }
+                },
+                "Property": "Coste_Multas_RRHH"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fact_multas.Coste_Multas_RRHH"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

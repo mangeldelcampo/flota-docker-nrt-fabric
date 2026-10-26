@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_silver_crear_conductores"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "628e92b1-0778-b3bd-4b88-a8ee9862fdef"
+  }
+}

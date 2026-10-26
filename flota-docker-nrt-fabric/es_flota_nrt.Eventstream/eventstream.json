@@ -1,0 +1,126 @@
+{
+  "sources": [
+    {
+      "id": "67e6b271-8ac6-4a62-b874-5a8be4911707",
+      "name": "src-simulador-flota",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "7cfec22d-60cc-53e2-a6a1-baf7055051bf",
+      "name": "JW7Wk2FNxKvizMb9eeUHnh-2551dd40-b52c-4838-864c-37b124e23b71",
+      "type": "Activator",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "24e23b71-37b1-864c-4838-b52c2551dd40",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "es_flota_nrt-stream"
+        }
+      ]
+    },
+    {
+      "id": "dd3fce23-19c6-4a5a-b8a5-85994e685fb5",
+      "name": "dest_lh_telemetria",
+      "type": "Lakehouse",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "1ce7b377-f094-b411-493c-663e9a85df46",
+        "schema": "",
+        "deltaTable": "telemetria_nrt_v2",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "es_flota_nrt-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "es_flota_nrt-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "VehicleID",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Timestamp",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Latitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Longitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Speed",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EngineRPM",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "FuelLevel",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "DTC_Code",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "d7bad0e7-f4f9-4765-84fb-eacec4a7a376",
+      "name": "es_flota_nrt-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "src-simulador-flota"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

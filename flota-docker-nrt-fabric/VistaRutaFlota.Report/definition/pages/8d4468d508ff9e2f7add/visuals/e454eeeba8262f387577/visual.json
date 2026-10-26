@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e454eeeba8262f387577",
+  "position": {
+    "x": 282.13017751479293,
+    "y": 266.98224852071007,
+    "z": 9002,
+    "height": 196.92307692307693,
+    "width": 210.17751479289942,
+    "tabOrder": 9002
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_hora"
+                    }
+                  },
+                  "Property": "Horas_Seleccionadas"
+                }
+              },
+              "queryRef": "dim_hora.Horas_Seleccionadas",
+              "nativeQueryRef": "Horas_Seleccionadas"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

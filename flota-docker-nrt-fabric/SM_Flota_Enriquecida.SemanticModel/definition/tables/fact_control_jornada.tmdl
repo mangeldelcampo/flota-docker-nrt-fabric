@@ -1,0 +1,78 @@
+table fact_control_jornada
+	lineageTag: e34efcbd-558b-4d09-977a-8da5ea8c4384
+	sourceLineageTag: [dbo].[fact_control_jornada]
+
+	column id_fichaje
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 67590ec8-ffd1-4b13-899a-798f282af265
+		sourceLineageTag: id_fichaje
+		summarizeBy: none
+		sourceColumn: id_fichaje
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bf1a3375-9007-4c7c-9dd9-bf16b60f755f
+		sourceLineageTag: id_empleado
+		summarizeBy: none
+		sourceColumn: id_empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Fichaje
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 1c6d8e76-011c-4ca6-b5fe-11680e9f463a
+		sourceLineageTag: Fecha_Fichaje
+		summarizeBy: none
+		sourceColumn: Fecha_Fichaje
+
+		annotation SummarizationSetBy = Automatic
+
+	column Horas_Efectivas
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 3a067bb7-88f2-465c-bea1-a829e082e217
+		sourceLineageTag: Horas_Efectivas
+		summarizeBy: sum
+		sourceColumn: Horas_Efectivas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Horas_Extra
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 105a37c4-2352-41e4-a92e-0254749c7cba
+		sourceLineageTag: Horas_Extra
+		summarizeBy: sum
+		sourceColumn: Horas_Extra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tipo_Ausencia
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 973226ae-2bce-4bd0-918b-0d14662645be
+		sourceLineageTag: Tipo_Ausencia
+		summarizeBy: none
+		sourceColumn: Tipo_Ausencia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_control_jornada = entity
+		mode: directLake
+		source
+			entityName: fact_control_jornada
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

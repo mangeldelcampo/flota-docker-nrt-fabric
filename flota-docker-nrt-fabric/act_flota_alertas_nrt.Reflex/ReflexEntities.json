@@ -1,0 +1,197 @@
+[
+  {
+    "uniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e",
+    "payload": {
+      "name": "es_flota_nrt",
+      "description": "Container Description",
+      "type": "eventstreams"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "7cfec22d-60cc-53e2-a6a1-baf7055051bf",
+    "payload": {
+      "name": "es_flota_nrt-stream event",
+      "metadata": {
+        "eventstreamArtifactId": "200b5c21-5bd7-4190-9010-90b8f3a02cf6",
+        "eventTypes": [
+          {
+            "name": "es_flota_nrt"
+          }
+        ]
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      }
+    },
+    "type": "eventstreamSource-v1"
+  },
+  {
+    "uniqueIdentifier": "73540ac6-a47c-45cc-be9e-34ae1cfd24e6",
+    "payload": {
+      "name": "es_flota_nrt-stream event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"7ca640c3-2c67-4333-b7c4-de4081ae6759\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"7cfec22d-60cc-53e2-a6a1-baf7055051bf\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1",
+    "payload": {
+      "name": "Vehículo",
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Object"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "a8c2bf41-59b8-4737-94cd-5af82e288e2e",
+    "payload": {
+      "name": "VehicleID",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"ca7de0d2-83ab-47e2-9e25-73b53f08d88c\",\"name\":\"IdPartStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"IdentityPartAttribute\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "e4d7c0bb-124e-4d27-815f-83d089178840",
+    "payload": {
+      "name": "VehicleID",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"b4eaecc8-41c6-4f08-b695-74d18eac9751\",\"name\":\"IdStructureStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"a8c2bf41-59b8-4737-94cd-5af82e288e2e\"}],\"kind\":\"AttributeReference\",\"name\":\"idPart\",\"type\":\"complex\"}],\"kind\":\"IdPart\",\"name\":\"IdPart\"}]}],\"templateId\":\"IdentityTupleAttribute\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "8a18144f-89d1-4d4e-9d0b-13d020114946",
+    "payload": {
+      "name": "es_flota_nrt-stream event",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"6a48c913-13a3-4008-a534-bb7342468db4\",\"name\":\"SplitEventStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"73540ac6-a47c-45cc-be9e-34ae1cfd24e6\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"VehicleID\"},{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"a8c2bf41-59b8-4737-94cd-5af82e288e2e\"}],\"kind\":\"AttributeReference\",\"name\":\"idPart\",\"type\":\"complex\"}],\"kind\":\"FieldIdMapping\",\"name\":\"FieldIdMapping\"},{\"arguments\":[{\"name\":\"isAuthoritative\",\"type\":\"boolean\",\"value\":true}],\"kind\":\"EventOptions\",\"name\":\"SplitEventOptions\"}]}],\"templateId\":\"SplitEvent\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "9d562b63-0257-4366-b3f0-b657171fd5a4",
+    "payload": {
+      "name": "FuelLevel",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"a954a96d-3ae4-4478-8383-21059d0970f4\",\"name\":\"EventSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"8a18144f-89d1-4d4e-9d0b-13d020114946\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"FuelLevel\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"}]},{\"id\":\"0e5178b1-3deb-43e8-9e55-927968bce27a\",\"name\":\"EventComputeStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Number\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "116a4c4c-9e3b-4529-9b47-aebaae2007ca",
+    "payload": {
+      "name": "Speed",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"4aac8af5-8222-4857-887a-b1511b9f07c4\",\"name\":\"EventSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"8a18144f-89d1-4d4e-9d0b-13d020114946\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Speed\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"}]},{\"id\":\"a2cd62ad-319b-43cf-a577-4e79d6044b53\",\"name\":\"EventComputeStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Number\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "1202b8dd-70ee-42c0-9de9-1643e2ba3229",
+    "payload": {
+      "name": "Latitude",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"0f810f41-a64a-4df1-8c5a-ad917a23747f\",\"name\":\"EventSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"8a18144f-89d1-4d4e-9d0b-13d020114946\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Latitude\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"}]},{\"id\":\"c04d68c7-75ba-41dc-8498-ce388a7ab73a\",\"name\":\"EventComputeStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Number\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "6440f910-8787-4876-8bbf-088ef0975239",
+    "payload": {
+      "name": "Longitude",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"steps\":[{\"id\":\"944b8eca-b3db-4a67-9100-4bc4db5f2994\",\"name\":\"EventSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"8a18144f-89d1-4d4e-9d0b-13d020114946\"}],\"kind\":\"EventReference\",\"name\":\"event\",\"type\":\"complex\"}],\"kind\":\"Event\",\"name\":\"EventSelector\"},{\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Longitude\"}],\"kind\":\"EventField\",\"name\":\"EventFieldSelector\"}]},{\"id\":\"ea82e6d1-dfbf-45e2-b4bc-d57893240537\",\"name\":\"EventComputeStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Number\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}],\"kind\":\"TypeAssertion\",\"name\":\"TypeAssertion\"}]}],\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.3.1\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "f91b406c-fe2c-48fa-808a-f35ea8d02e71",
+    "payload": {
+      "name": "Alerta FuelLevel",
+      "parentObject": {
+        "targetUniqueIdentifier": "fe8905da-953d-43cd-8c22-c9ef2de674e1"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "12eb001e-53ce-4d70-827b-6b37a17e9f5e"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"steps\":[{\"id\":\"b8c24e7f-2067-43a1-8acc-fb1848ccc08b\",\"name\":\"ScalarSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"9d562b63-0257-4366-b3f0-b657171fd5a4\"}],\"kind\":\"AttributeReference\",\"name\":\"attribute\",\"type\":\"complex\"}],\"kind\":\"Attribute\",\"name\":\"AttributeSelector\"}]},{\"id\":\"9ebb620e-5d6f-4a0e-b59e-3421be9d1179\",\"name\":\"ScalarDetectStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"BecomesLessThan\"},{\"name\":\"value\",\"type\":\"number\",\"value\":10}],\"kind\":\"NumberBecomes\",\"name\":\"NumberBecomes\"},{\"arguments\":[],\"kind\":\"EachTime\",\"name\":\"OccurrenceOption\"}]},{\"id\":\"012689b8-bf87-494c-a5e5-b80710aa5988\",\"name\":\"DimensionalFilterAndOrStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"And\"}],\"kind\":\"FilterModifier\",\"name\":\"DimensionalFilterModifier\"},{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"116a4c4c-9e3b-4529-9b47-aebaae2007ca\"}],\"kind\":\"AttributeReference\",\"name\":\"attribute\",\"type\":\"complex\"}],\"kind\":\"Attribute\",\"name\":\"AttributeSelector\"},{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsGreaterThan\"},{\"name\":\"threshold\",\"type\":\"number\",\"value\":0}],\"kind\":\"NumberValueCondition\",\"name\":\"NumberValueCondition\"}]},{\"id\":\"1b9f2392-3f52-4cb0-b147-fce07c89d052\",\"name\":\"ActStep\",\"rows\":[{\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"recipients\",\"type\":\"array\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"miguelangel.delcampo_tajamar365.com#EXT#@prepara900.onmicrosoft.com\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Alerta de Activator Alerta FuelLevel\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"La condición para \\\"Alerta FuelLevel\\\" se ha cumplido.\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}],\"kind\":\"TeamsMessage\",\"name\":\"TeamsBinding\"}]}],\"templateId\":\"AttributeTrigger\",\"templateVersion\":\"1.3.1\"}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": true,
+          "delayToleranceMs": 120000
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]

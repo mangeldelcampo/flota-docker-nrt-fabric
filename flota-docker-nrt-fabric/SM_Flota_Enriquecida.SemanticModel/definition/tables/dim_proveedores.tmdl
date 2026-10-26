@@ -1,0 +1,66 @@
+table dim_proveedores
+	lineageTag: 7a822865-3c03-408e-8069-d969458ceb0f
+	sourceLineageTag: [dbo].[dim_proveedores]
+
+	column ID_Proveedor
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: eab5f887-c8c9-48e3-82be-c28a0aea8b9b
+		sourceLineageTag: ID_Proveedor
+		summarizeBy: none
+		sourceColumn: ID_Proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre_Taller
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d7021ad2-f98f-46b3-b3c6-63dd98577256
+		sourceLineageTag: Nombre_Taller
+		summarizeBy: none
+		sourceColumn: Nombre_Taller
+
+		annotation SummarizationSetBy = Automatic
+
+	column Especialidad
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ea2244d3-3db5-44fe-a71c-0954a84c98b4
+		sourceLineageTag: Especialidad
+		summarizeBy: none
+		sourceColumn: Especialidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tarifa_Hora_EUR
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 5865b9d3-a9fa-4f44-980d-d42f490f2b2c
+		sourceLineageTag: Tarifa_Hora_EUR
+		summarizeBy: none
+		sourceColumn: Tarifa_Hora_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SLA_Dias
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fe94b5eb-04da-435d-9065-d440fbe1414f
+		sourceLineageTag: SLA_Dias
+		summarizeBy: none
+		sourceColumn: SLA_Dias
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_proveedores = entity
+		mode: directLake
+		source
+			entityName: dim_proveedores
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

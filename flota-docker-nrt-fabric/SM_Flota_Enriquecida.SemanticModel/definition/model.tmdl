@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation PBI_ProTooling = ["WebModelingEdit"]
+
+ref table telemetria_enriquecida
+ref table dim_conductores
+ref table fact_multas
+ref table dim_calendario
+ref table fact_incidencias
+ref table fact_control_jornada
+ref table dim_vehiculos_tecnica
+ref table dim_proveedores
+ref table fact_checklist_diario
+ref table fact_mantenimientos
+ref table dim_dtc_codigos
+ref table dim_paradas_emt
+ref table dim_hora
+

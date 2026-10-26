@@ -1,0 +1,120 @@
+table dim_hora
+	lineageTag: 0b42ff6a-3866-44cc-ace1-f1960acb72bc
+	sourceLineageTag: [dbo].[dim_hora]
+
+	measure Horas_Seleccionadas = ```
+			
+			VAR CantidadTotalHoras = COUNTROWS(ALL('dim_hora'[Hora]))
+			VAR HorasFiltradas = COUNTROWS(VALUES('dim_hora'[Hora]))
+			VAR ListaTexto = 
+			    CONCATENATEX(
+			        VALUES('dim_hora'[Hora]),
+			        FORMAT('dim_hora'[Hora], "00") & ":00h",
+			        ", ",
+			        'dim_hora'[Hora],
+			        ASC
+			    )
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    -- Si no hay nada marcado o están todas seleccionadas
+			    HorasFiltradas = CantidadTotalHoras, "Todas las horas",
+			    
+			    -- Si hay entre 1 y 3 horas seleccionadas, las enumera
+			    HorasFiltradas <= 3, ListaTexto,
+			    
+			    -- Si seleccionas muchas para no desbordar el texto
+			    HorasFiltradas & " horas seleccionadas (" & MIN('dim_hora'[Hora]) & ":00h - " & MAX('dim_hora'[Hora]) & ":00h)"
+			)
+			```
+		lineageTag: 66314b8f-eaed-4b84-9136-16e76d57cea2
+
+		changedProperty = Name
+
+	measure Fechas_Seleccionadas = ```
+			
+			VAR TotalDiasCalendario = COUNTROWS(ALL('dim_calendario'[Fecha]))
+			VAR DiasFiltrados = COUNTROWS(VALUES('dim_calendario'[Fecha]))
+			VAR MinFecha = MIN('dim_calendario'[Fecha])
+			VAR MaxFecha = MAX('dim_calendario'[Fecha])
+			
+			-- Concatenación de fechas formateadas (ej: 25/10/2026, 26/10/2026)
+			VAR ListaFechas = 
+			    CONCATENATEX(
+			        VALUES('dim_calendario'[Fecha]),
+			        FORMAT('dim_calendario'[Fecha], "dd/mm/yyyy"),
+			        ", ",
+			        'dim_calendario'[Fecha],
+			        ASC
+			    )
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    -- 1. Si no hay nada filtrado o están seleccionados todos los días
+			    DiasFiltrados = TotalDiasCalendario, "Todo el histórico",
+			    
+			    -- 2. Si hay un único día seleccionado
+			    DiasFiltrados = 1, FORMAT(MinFecha, "dd/mm/yyyy"),
+			    
+			    -- 3. Si hay 2 o 3 días específicos seleccionados, los enumera
+			    DiasFiltrados <= 3, ListaFechas,
+			    
+			    -- 4. Si selecciona un rango amplio o más de 3 días (evita textos kilométricos)
+			    "Del " & FORMAT(MinFecha, "dd/mm/yyyy") & " al " & FORMAT(MaxFecha, "dd/mm/yyyy") & " (" & DiasFiltrados & " días)"
+			)
+			```
+		lineageTag: 6074d36c-44dd-4a0d-b1d0-3221ad00fa74
+
+		changedProperty = Name
+
+	column Hora
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 65ab8dab-a3f6-49fa-8a06-ba701ca77e46
+		sourceLineageTag: Hora
+		summarizeBy: none
+		sourceColumn: Hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora_Texto
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 043d6822-d0e0-411e-a229-2f318505c250
+		sourceLineageTag: Hora_Texto
+		summarizeBy: none
+		sourceColumn: Hora_Texto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Franja_Horaria
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 779727b2-645c-4b61-acd2-cb49a94f6f9e
+		sourceLineageTag: Franja_Horaria
+		summarizeBy: none
+		sourceColumn: Franja_Horaria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno_Horario
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9f1027f6-f60f-4cb0-a2e4-937b4ca6adc6
+		sourceLineageTag: Turno_Horario
+		summarizeBy: none
+		sourceColumn: Turno_Horario
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_hora = entity
+		mode: directLake
+		source
+			entityName: dim_hora
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

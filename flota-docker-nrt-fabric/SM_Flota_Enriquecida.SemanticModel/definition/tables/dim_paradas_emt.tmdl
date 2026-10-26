@@ -1,0 +1,120 @@
+table dim_paradas_emt
+	lineageTag: 510723c5-5c47-4ab3-bb31-bfb711c83674
+	sourceLineageTag: [dbo].[dim_paradas_emt]
+
+	column linea_comercial
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2b669364-df61-48bf-884f-9e802d453ec0
+		sourceLineageTag: linea_comercial
+		summarizeBy: none
+		sourceColumn: linea_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	column linea_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fed822f3-fa57-4fa1-ad56-6109c696548a
+		sourceLineageTag: linea_id
+		summarizeBy: none
+		sourceColumn: linea_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cabecera_origen
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8b53e906-1383-4fdf-a8d1-bd44f50f5b88
+		sourceLineageTag: cabecera_origen
+		summarizeBy: none
+		sourceColumn: cabecera_origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column cabecera_destino
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7cff0675-8cc3-4007-aa9a-00d3c6b05c0e
+		sourceLineageTag: cabecera_destino
+		summarizeBy: none
+		sourceColumn: cabecera_destino
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_parada
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 805f40be-b7b4-4c12-8d0f-941b6e060bfc
+		sourceLineageTag: id_parada
+		summarizeBy: sum
+		sourceColumn: id_parada
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_parada
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 90deb83b-d9f7-4400-96da-7ad5b5e0f486
+		sourceLineageTag: nombre_parada
+		summarizeBy: none
+		sourceColumn: nombre_parada
+
+		annotation SummarizationSetBy = Automatic
+
+	column distancia_parada
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 215b6632-ed87-4ccb-9734-06783cbe9630
+		sourceLineageTag: distancia_parada
+		summarizeBy: sum
+		sourceColumn: distancia_parada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column latitud_parada
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 862b96cf-beaf-4d1d-bd71-e218208a7910
+		sourceLineageTag: latitud_parada
+		summarizeBy: sum
+		sourceColumn: latitud_parada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitud_parada
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 28c9dffd-183b-4149-a230-e3be4bcf11e6
+		sourceLineageTag: longitud_parada
+		summarizeBy: sum
+		sourceColumn: longitud_parada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sentido
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 62d8f77b-c375-49fd-92c8-51c7048ad58f
+		sourceLineageTag: sentido
+		summarizeBy: none
+		sourceColumn: sentido
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_paradas_emt = entity
+		mode: directLake
+		source
+			entityName: dim_paradas_emt
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "dacccdbd-b3e3-b34c-433e-2abcd1be734a",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "act_nb_silver_mantenimiento",
+        "description": "Este pipeline compacta y limpia la tabla viva lh_flota_silver.telemetria_enriquecida, garantizando que Direct Lake lea archivos Parquet consolidados de tamaño óptimo.",
+        "dependsOn": []
+      }
+    ]
+  }
+}

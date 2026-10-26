@@ -1,0 +1,172 @@
+table dim_vehiculos_tecnica
+	lineageTag: 82fb58d0-3e1e-46c7-8fec-8d590b301a86
+	sourceLineageTag: [dbo].[dim_vehiculos_tecnica]
+
+	measure Pct_Flota_Cero = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('dim_vehiculos_tecnica'), 
+			        'dim_vehiculos_tecnica'[Clasificacion_Ambiental] = "CERO"
+			    ),
+			    COUNTROWS('dim_vehiculos_tecnica'),
+			    0
+			)
+			```
+		lineageTag: e03355c7-23ca-4af2-8a0c-8d8edecaa308
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Vehiculos_Alerta_ITV =
+			
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('dim_vehiculos_tecnica'),
+			        'dim_vehiculos_tecnica'[Caducidad_ITV] <= TODAY() + 30
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 37216c8f-c73f-4307-b523-1670962125b0
+
+		changedProperty = Name
+
+	column VehicleID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 97bd9400-d778-404b-9a1d-bf1cc7b0a7ab
+		sourceLineageTag: VehicleID
+		summarizeBy: none
+		sourceColumn: VehicleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Vehiculo
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ced6135f-5599-4bdf-bacd-cbcd76b4e26e
+		sourceLineageTag: Tipo_Vehiculo
+		summarizeBy: none
+		sourceColumn: Tipo_Vehiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Combustible
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 75aee741-2a03-40f4-99f8-2fe84fc881d7
+		sourceLineageTag: Tipo_Combustible
+		summarizeBy: none
+		sourceColumn: Tipo_Combustible
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capacidad_Deposito_Lts
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a14742b1-6a99-4fc6-a824-2fe8224b5d8a
+		sourceLineageTag: Capacidad_Deposito_Lts
+		summarizeBy: sum
+		sourceColumn: Capacidad_Deposito_Lts
+
+		annotation SummarizationSetBy = Automatic
+
+	column Consumo_Medio_100km
+		dataType: double
+		sourceProviderType: real
+		lineageTag: 19caf152-017d-4a3c-b367-052cc9612ab8
+		sourceLineageTag: Consumo_Medio_100km
+		summarizeBy: sum
+		sourceColumn: Consumo_Medio_100km
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Coste_Anual_Seguro_EUR
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 52e5615a-d677-4adf-a859-a1bf453da841
+		sourceLineageTag: Coste_Anual_Seguro_EUR
+		summarizeBy: sum
+		sourceColumn: Coste_Anual_Seguro_EUR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kilometros_Adquisicion
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c00f6acc-7399-452a-9f47-206d54b50684
+		sourceLineageTag: Kilometros_Adquisicion
+		summarizeBy: sum
+		sourceColumn: Kilometros_Adquisicion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ultima_ITV
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: a367baf3-f84a-4ab5-8cf6-fd2171fe4075
+		sourceLineageTag: Ultima_ITV
+		summarizeBy: none
+		sourceColumn: Ultima_ITV
+
+		annotation SummarizationSetBy = Automatic
+
+	column Caducidad_ITV
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: ed525c70-c881-4232-ac39-06d9dbb5f8b1
+		sourceLineageTag: Caducidad_ITV
+		summarizeBy: none
+		sourceColumn: Caducidad_ITV
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rol_Operativo
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 873b487f-6486-46d8-902c-c62bbab9e536
+		sourceLineageTag: Rol_Operativo
+		summarizeBy: none
+		sourceColumn: Rol_Operativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clasificacion_Ambiental
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3d049700-a883-48e5-be6b-07a41c00685b
+		sourceLineageTag: Clasificacion_Ambiental
+		summarizeBy: none
+		sourceColumn: Clasificacion_Ambiental
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Certificado_Emisiones
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: dd77ca66-073f-45c3-b904-65e9ffa14f8f
+		sourceLineageTag: Fecha_Certificado_Emisiones
+		summarizeBy: none
+		sourceColumn: Fecha_Certificado_Emisiones
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_vehiculos_tecnica = entity
+		mode: directLake
+		source
+			entityName: dim_vehiculos_tecnica
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

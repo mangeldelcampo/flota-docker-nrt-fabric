@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Reflex",
+    "displayName": "act_flota_alertas_nrt"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "24e23b71-37b1-864c-4838-b52c2551dd40"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "4616a527-1f15-9bc1-47bd-e20937ef722a",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "act_nb_datos_nb_enriquecimiento_nrt",
+        "description": "Actualiza la información de la tabla enriquecida",
+        "dependsOn": []
+      },
+      {
+        "type": "PBISemanticModelRefresh",
+        "typeProperties": {
+          "method": "POST",
+          "groupId": "43c901bd-0717-46ee-96f7-562666215b0a",
+          "datasetId": "5b19e75d-87ce-47e6-9e30-7e87fea47372",
+          "commitMode": "Transactional",
+          "waitOnCompletion": true,
+          "operationType": "SemanticModelRefresh"
+        },
+        "externalReferences": {
+          "connection": "0e0e994e-e881-4e26-8cb5-0f31e347301d"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Semantic model refresh1",
+        "description": "Actualización del Modelo Semantico",
+        "dependsOn": [
+          {
+            "activity": "act_nb_datos_nb_enriquecimiento_nrt",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>&nbsp;El pipeline pl_procesamiento_flota_plata ha finalizado correctamente<br>\n<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Resumen de la carga:<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Notebook: act_nb_datos_nb_enriquecimiento nrt<br>\n@{activity('act_nb_datos_nb_enriquecimiento_nrt').output}<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Acttualización del modelo SM_Flota_enriquecida</p>\n<p>@{activity('Semantic model refresh1').output}<br>\n</p>",
+          "to": "mangel.delcampo@gmail.com",
+          "subject": "Fabric: Proceso terminado Exitosamente pl_proces_flota_plata"
+        },
+        "externalReferences": {
+          "connection": "d8dbc85e-255a-4fdf-a974-2a3320356b90"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Semantic model refresh1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MicrosoftTeams",
+        "typeProperties": {
+          "content": "<p>El pipeline pl_procesamiento_flota_plata ha finalizado correctamente<br>\n<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Resumen de la carga:<br>\n&nbsp;&nbsp;<span style=\"font-size: 14px\"><u><strong>&nbsp;&nbsp;&nbsp;- Notebook: act_nb_datos_nb_enriquecimiento nrt</strong></u></span><br>\n@{activity('act_nb_datos_nb_enriquecimiento_nrt').output}</p>\n<p><br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><strong>- Acttualización del modelo SM_Flota_enriquecid</strong></u><br>\n@{activity('Semantic model refresh1').output}<br>\n</p>",
+          "teamId": "c01f8029-b9cf-461f-b1e7-6b1d1e465e41",
+          "channelId": "19:70678f7213f04242a729cc7805c502bb@thread.tacv2",
+          "operationType": "SendMessageInChannel",
+          "subject": "NRT FLOTAS MAC"
+        },
+        "externalReferences": {
+          "connection": "7c25f5a1-6f28-4038-9f64-ba628b7eab3c"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "MicrosoftTeams1",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": [
+          {
+            "activity": "Semantic model refresh1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

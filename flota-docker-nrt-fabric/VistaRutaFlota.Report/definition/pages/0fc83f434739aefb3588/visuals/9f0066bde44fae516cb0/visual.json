@@ -1,0 +1,512 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9f0066bde44fae516cb0",
+  "position": {
+    "x": 329.82954545454544,
+    "y": 408.06818181818181,
+    "z": 0,
+    "height": 613.63636363636363,
+    "width": 1504.9431818181818,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "nombre_conductor"
+                }
+              },
+              "queryRef": "dim_conductores.nombre_conductor",
+              "nativeQueryRef": "nombre_conductor"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "turno"
+                }
+              },
+              "queryRef": "dim_conductores.turno",
+              "nativeQueryRef": "turno"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "vehiculo_asignado"
+                }
+              },
+              "queryRef": "dim_conductores.vehiculo_asignado",
+              "nativeQueryRef": "vehiculo_asignado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "Estado_Permiso"
+                }
+              },
+              "queryRef": "dim_conductores.Estado_Permiso",
+              "nativeQueryRef": "Estado_Permiso"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dim_conductores"
+                        }
+                      },
+                      "Property": "Saldo_Puntos_Inicial"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dim_conductores.Saldo_Puntos_Inicial)",
+              "nativeQueryRef": "Suma de Saldo_Puntos_Inicial"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "2_Alerta_Operativa_RRHH"
+                }
+              },
+              "queryRef": "dim_conductores.2_Alerta_Operativa_RRHH",
+              "nativeQueryRef": "2_Alerta_Operativa_RRHH"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "Alertas_Carnet"
+                }
+              },
+              "queryRef": "dim_conductores.Alertas_Carnet",
+              "nativeQueryRef": "Alertas_Carnet"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_conductores"
+                  }
+                },
+                "Property": "nombre_conductor"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "1074.3256361596054D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_conductores.2_Alerta_Operativa_RRHH"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "260.5813953488372D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_conductores.nombre_conductor"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "161.20928869572543D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_conductores.vehiculo_asignado"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {}
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dim_conductores.nombre_conductor"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabla Maestra de Conductores'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading2'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BoldHeader'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Conductores por turno con estado de Carnet y Apto Médico\n'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b1467d580a5b37479c46",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_conductores"
+              }
+            },
+            "Property": "nombre_conductor"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_conductores",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "nombre_conductor"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "6520786c26a83d79f492",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_conductores"
+              }
+            },
+            "Property": "turno"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9768f55b80584a07fb2a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_conductores"
+              }
+            },
+            "Property": "vehiculo_asignado"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4c616e1fada43a830d4e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_conductores"
+              }
+            },
+            "Property": "Estado_Permiso"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f667f48373f021a0c583",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_conductores"
+                  }
+                },
+                "Property": "Saldo_Puntos_Inicial"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "13ca1b53ff33cb0db9cb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_conductores"
+              }
+            },
+            "Property": "2_Alerta_Operativa_RRHH"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "96ad7ca4364d038d0052",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_conductores"
+              }
+            },
+            "Property": "Alertas_Carnet"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

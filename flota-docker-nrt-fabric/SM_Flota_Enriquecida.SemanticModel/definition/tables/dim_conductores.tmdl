@@ -1,0 +1,270 @@
+table dim_conductores
+	lineageTag: c7c11119-0e23-4dde-b34f-2f9bcd74b60b
+	sourceLineageTag: [dbo].[dim_conductores]
+
+	measure 1_Saldo_Puntos_Actual =
+			
+			VAR PuntosIniciales = MAX('dim_conductores'[Saldo_Puntos_Inicial])
+			VAR PuntosPerdidos = SUM('fact_multas'[Puntos_DGT_Retirados])
+			RETURN
+			PuntosIniciales - COALESCE(PuntosPerdidos, 0)
+		formatString: 0
+		lineageTag: a1989849-bd67-49ff-8cd9-32b557d766f1
+
+		changedProperty = Name
+
+	measure 2_Alerta_Operativa_RRHH =
+			
+			VAR Saldo = [1_Saldo_Puntos_Actual]
+			VAR Medico_Apto = SELECTEDVALUE('dim_conductores'[Apto_Medico])
+			VAR Permiso = UPPER(TRIM(SELECTEDVALUE('dim_conductores'[Estado_Permiso])))
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Medico_Apto = FALSE(), "🔴 SUSPENSIÓN: No Apto Médico",
+			    CONTAINSSTRING(Permiso, "CADUC"), "🔴 SUSPENSIÓN: Permiso Caducado",
+			    ISBLANK(Saldo), "Sin Datos",
+			    Saldo >= 8, "🟢 OK (Operativo)",
+			    Saldo >= 4, "🟡 AVISO: Curso Recuperación Parcial",
+			    Saldo >= 1, "🟠 CRÍTICO: Pre-reemplazo",
+			    "🔴 SUSPENSIÓN: Retirada de Licencia por Puntos"
+			)
+		lineageTag: a37a2354-ac47-412a-9542-794339998c90
+
+		changedProperty = Name
+
+	measure 3_Color_Alerta_RRHH =
+			
+			VAR Medico_Apto = SELECTEDVALUE('dim_conductores'[Apto_Medico])
+			VAR Permiso = UPPER(TRIM(SELECTEDVALUE('dim_conductores'[Estado_Permiso])))
+			VAR Saldo = [1_Saldo_Puntos_Actual]
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Medico_Apto = FALSE(), "#FAD2CF",               -- Rojo intenso
+			    CONTAINSSTRING(Permiso, "CADUC"), "#FAD2CF",     -- Rojo intenso
+			    ISBLANK(Saldo), "#FFFFFF",
+			    Saldo >= 8, "#E6F4EA",                          -- Verde claro
+			    Saldo >= 4, "#FEF7E0",                          -- Amarillo claro
+			    Saldo >= 1, "#FCE8E6",                          -- Naranja claro
+			    "#FAD2CF"                                       -- Rojo intenso (0 puntos)
+			)
+		lineageTag: baeec42b-ecae-4cd9-810f-5b19930b6680
+
+		changedProperty = Name
+
+	measure Alertas_Carnet = ```
+			
+			VAR Conteo = 
+			    CALCULATE(
+			        COUNTROWS('dim_conductores'),
+			        SEARCH("CADUC", UPPER('dim_conductores'[Estado_Permiso]), 1, 0) > 0
+			    )
+			RETURN
+			COALESCE(Conteo, 0)
+			```
+		formatString: 0
+		lineageTag: c45b1c7c-c209-451c-84d3-91c91b62644e
+
+		changedProperty = Name
+
+	measure Conductores_Suspendidos = ```
+			
+			COUNTROWS(
+			    FILTER(
+			        'dim_conductores',
+			        [1_Saldo_Puntos_Actual] <= 0 || 
+			        SEARCH("CADUC", UPPER('dim_conductores'[Estado_Permiso]), 1, 0) > 0 || 
+			        'dim_conductores'[Apto_Medico] = FALSE
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: b7b904ef-7c45-467f-86bd-e5a116dce570
+
+		changedProperty = Name
+
+	measure No_Aptos_Medicos = ```
+			
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('dim_conductores'), 
+			        'dim_conductores'[Apto_Medico] = FALSE
+			    ),
+			    0
+			)
+			```
+		formatString: 0
+		lineageTag: 1d49c951-9813-4c0b-bb1e-d4dba5335bdf
+
+		changedProperty = Name
+
+	column id_empleado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0fad5351-3db1-4f85-a2ca-0424eb9257e6
+		sourceLineageTag: id_empleado
+		summarizeBy: none
+		sourceColumn: id_empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_conductor
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 34513eb9-a60c-4278-82f2-dd0ede99054c
+		sourceLineageTag: nombre_conductor
+		summarizeBy: none
+		sourceColumn: nombre_conductor
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehiculo_asignado
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 13a75b25-b4a2-435b-95d7-80e9bd1de4f0
+		sourceLineageTag: vehiculo_asignado
+		summarizeBy: none
+		sourceColumn: vehiculo_asignado
+
+		annotation SummarizationSetBy = Automatic
+
+	column turno
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3733ff7f-3f6c-48de-988a-c51191200211
+		sourceLineageTag: turno
+		summarizeBy: none
+		sourceColumn: turno
+
+		annotation SummarizationSetBy = Automatic
+
+	column experiencia_anos
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f9fe5ee7-85fa-4a26-b8de-85cc41060a1c
+		sourceLineageTag: experiencia_anos
+		summarizeBy: sum
+		sourceColumn: experiencia_anos
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria_carnet
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bcec4e33-330a-42ca-82f1-2fa4eeb8a6bc
+		sourceLineageTag: categoria_carnet
+		summarizeBy: none
+		sourceColumn: categoria_carnet
+
+		annotation SummarizationSetBy = Automatic
+
+	column telefono_contacto
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 02b2efcb-1d68-4d08-9ff9-fc58c3e36ffd
+		sourceLineageTag: telefono_contacto
+		summarizeBy: none
+		sourceColumn: telefono_contacto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Caducidad_Permiso
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 9a91c38d-a63a-4638-9ed5-f15a39021a03
+		sourceLineageTag: Caducidad_Permiso
+		summarizeBy: none
+		sourceColumn: Caducidad_Permiso
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado_Permiso
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f339ae86-9583-40f5-8142-45d78c89d774
+		sourceLineageTag: Estado_Permiso
+		summarizeBy: none
+		sourceColumn: Estado_Permiso
+
+		annotation SummarizationSetBy = Automatic
+
+	column Saldo_Puntos_Inicial
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b3e1112b-a5ae-4675-abfc-0d9b588faf31
+		sourceLineageTag: Saldo_Puntos_Inicial
+		summarizeBy: sum
+		sourceColumn: Saldo_Puntos_Inicial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Contrato
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 30f56830-eb41-445c-8fca-c97564f5ab17
+		sourceLineageTag: Tipo_Contrato
+		summarizeBy: none
+		sourceColumn: Tipo_Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column Apto_Medico
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 894e652b-5583-4c72-a6dd-c70c11acc172
+		sourceLineageTag: Apto_Medico
+		summarizeBy: none
+		sourceColumn: Apto_Medico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Certificados_SS_IRPF_Al_Dia
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 00402ac3-0965-4452-a5ab-ca655673f174
+		sourceLineageTag: Certificados_SS_IRPF_Al_Dia
+		summarizeBy: none
+		sourceColumn: Certificados_SS_IRPF_Al_Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entrega_EPIs
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5a5d7dee-ac97-448f-bac5-d1c345ebb592
+		sourceLineageTag: Entrega_EPIs
+		summarizeBy: none
+		sourceColumn: Entrega_EPIs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coste_Hora_Base
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(14, 1)
+		lineageTag: 3df51d8e-a07a-48a9-8dcd-c1153831ecf8
+		sourceLineageTag: Coste_Hora_Base
+		summarizeBy: sum
+		sourceColumn: Coste_Hora_Base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition dim_conductores = entity
+		mode: directLake
+		source
+			entityName: dim_conductores
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

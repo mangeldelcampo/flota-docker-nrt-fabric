@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "20994891-f21b-a820-48a7-1511e3f35ce1",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "act_nb_bronce_mantenimiento",
+        "description": "Este pipeline se encarga de compactar los micro-ficheros Parquet generados continuamente por el streaming en lh_flota_bronce.telemetria_nrt_v2 y purgar versiones con más de 7 días (168 HOURS).",
+        "dependsOn": []
+      }
+    ]
+  }
+}

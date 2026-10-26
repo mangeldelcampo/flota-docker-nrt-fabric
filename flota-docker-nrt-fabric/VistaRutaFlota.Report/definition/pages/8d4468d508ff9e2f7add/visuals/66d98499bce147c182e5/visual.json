@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "66d98499bce147c182e5",
+  "position": {
+    "x": 282.27272727272725,
+    "y": 463.2954545454545,
+    "z": 6000,
+    "height": 158.01136363636363,
+    "width": 369.71590909090907,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "telemetria_enriquecida"
+                    }
+                  },
+                  "Property": "Lista_Vehiculos_Criticos"
+                }
+              },
+              "queryRef": "telemetria_enriquecida.Lista_Vehiculos_Criticos",
+              "nativeQueryRef": "Lista_Vehiculos_Criticos"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'🚨 Vehículos en Reserva Crítica (<15%)'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "25647aa7f7975cf23a4c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "telemetria_enriquecida"
+              }
+            },
+            "Property": "Lista_Vehiculos_Criticos"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

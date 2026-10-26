@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SM_Flota_Enriquecida"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fea47372-7e87-9e30-47e6-87ce5b19e75d"
+  }
+}

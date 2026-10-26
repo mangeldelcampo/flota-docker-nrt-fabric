@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "InformeFlota"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "abb4c0d5-da43-a4d5-44c8-fee3cfac70e2"
+  }
+}

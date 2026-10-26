@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "es_flota_nrt"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f3a02cf6-90b8-9010-4190-5bd7200b5c21"
+  }
+}
