@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  simulator-1:
+    build:
+      context: ../src
+      dockerfile: Dockerfile
+    container_name: simulator-1
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CONTAINER_ID=Contenedor_1
+      - VEHICLE_START_ID=1001
+      - VEHICLE_END_ID=1015
+      - ROUTE_FILE=/app/topologia_rutas_flota_nrt.csv
+      - EVENTSTREAM_CONNECTION_STRING=${EVENTSTREAM_CONNECTION_STRING}
+      - EVENTSTREAM_NAME=${EVENTSTREAM_NAME}
+    volumes:
+      - ../data/topologia_rutas_flota_nrt.csv:/app/topologia_rutas_flota_nrt.csv:ro
+
+  simulator-2:
+    build:
+      context: ../src
+      dockerfile: Dockerfile
+    container_name: simulator-2
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CONTAINER_ID=Contenedor_2
+      - VEHICLE_START_ID=1016
+      - VEHICLE_END_ID=1030
+      - ROUTE_FILE=/app/topologia_rutas_flota_nrt.csv
+      - EVENTSTREAM_CONNECTION_STRING=${EVENTSTREAM_CONNECTION_STRING}
+      - EVENTSTREAM_NAME=${EVENTSTREAM_NAME}
+    volumes:
+      - ../data/topologia_rutas_flota_nrt.csv:/app/topologia_rutas_flota_nrt.csv:ro
+
+  simulator-3:
+    build:
+      context: ../src
+      dockerfile: Dockerfile
+    container_name: simulator-3
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CONTAINER_ID=Contenedor_3
+      - VEHICLE_START_ID=1031
+      - VEHICLE_END_ID=1045
+      - ROUTE_FILE=/app/topologia_rutas_flota_nrt.csv
+      - EVENTSTREAM_CONNECTION_STRING=${EVENTSTREAM_CONNECTION_STRING}
+      - EVENTSTREAM_NAME=${EVENTSTREAM_NAME}
+    volumes:
+      - ../data/topologia_rutas_flota_nrt.csv:/app/topologia_rutas_flota_nrt.csv:ro
