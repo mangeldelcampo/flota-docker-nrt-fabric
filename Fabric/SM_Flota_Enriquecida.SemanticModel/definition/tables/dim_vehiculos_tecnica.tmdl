@@ -13,11 +13,14 @@ table dim_vehiculos_tecnica
 			    0
 			)
 			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
 		lineageTag: e03355c7-23ca-4af2-8a0c-8d8edecaa308
 
 		changedProperty = Name
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
 
 	measure Vehiculos_Alerta_ITV =
 			
@@ -30,6 +33,17 @@ table dim_vehiculos_tecnica
 			)
 		formatString: 0
 		lineageTag: 37216c8f-c73f-4307-b523-1670962125b0
+
+		changedProperty = Name
+
+	measure Vehiculos_CERO_Total =
+			
+			CALCULATE(
+			    COUNTROWS('dim_vehiculos_tecnica'),
+			    'dim_vehiculos_tecnica'[Clasificacion_Ambiental] = "CERO"
+			)
+		formatString: 0
+		lineageTag: 100e295f-f327-4df2-ba29-c5a40d6cd75a
 
 		changedProperty = Name
 

@@ -7,7 +7,7 @@ table fact_checklist_diario
 			COALESCE(
 			    CALCULATE(
 			        COUNTROWS('fact_checklist_diario'),
-			        'fact_checklist_diario'[Estado_Visual] = "Con Daños"
+			        'fact_checklist_diario'[Estado_Visual] IN {"Con Daños", "Con Daños Previos"}
 			    ),
 			    0
 			)
@@ -15,6 +15,20 @@ table fact_checklist_diario
 		lineageTag: e0d12189-8fb2-4a9c-acdf-5bd71d41f49c
 
 		changedProperty = Name
+
+	measure Tasa_Incidentes_PreRuta =
+			
+			VAR TotalChecklists = COUNTROWS('fact_checklist_diario')
+			RETURN
+			DIVIDE([Checklists_Con_Danos], TotalChecklists, 0)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 2ac958c0-683e-4190-8110-9854b0a016d2
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
 
 	column VehicleID
 		dataType: string

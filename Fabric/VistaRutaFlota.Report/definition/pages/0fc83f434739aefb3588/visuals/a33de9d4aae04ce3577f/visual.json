@@ -2,15 +2,157 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "a33de9d4aae04ce3577f",
   "position": {
-    "x": 1178,
-    "y": 242,
-    "z": 5001,
-    "height": 150,
-    "width": 510,
-    "tabOrder": 5001
+    "x": 79.3984962406015,
+    "y": 151.57894736842104,
+    "z": 6000,
+    "height": 427.66917293233081,
+    "width": 537.74436090225561,
+    "tabOrder": 6000
   },
   "visual": {
-    "visualType": "kpi",
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "turno"
+                }
+              },
+              "queryRef": "dim_conductores.turno",
+              "nativeQueryRef": "turno",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_multas"
+                    }
+                  },
+                  "Property": "Turno_Infraccion"
+                }
+              },
+              "queryRef": "fact_multas.Turno_Infraccion",
+              "nativeQueryRef": "Turno_Infraccion",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_multas"
+                    }
+                  },
+                  "Property": "Total_Infracciones"
+                }
+              },
+              "queryRef": "fact_multas.Total_Infracciones",
+              "nativeQueryRef": "Total_Infracciones"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_multas"
+                  }
+                },
+                "Property": "Total_Infracciones"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'👉 Distribución de Infracciones por Turno'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   }
 }

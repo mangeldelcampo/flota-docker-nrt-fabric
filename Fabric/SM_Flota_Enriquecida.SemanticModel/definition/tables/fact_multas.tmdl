@@ -2,11 +2,12 @@ table fact_multas
 	lineageTag: 4213c6c8-69bc-4767-aa5d-99c541c016ad
 	sourceLineageTag: [dbo].[fact_multas]
 
-	measure Coste_Multas_RRHH = SUM('fact_multas'[Importe_EUR])
-		formatString: 0
+	measure Coste_Multas_RRHH = FORMAT(SUM('fact_multas'[Importe_EUR]), "#,##0 €")
 		lineageTag: 92d82c52-d758-4d59-8f6c-f41abc49bbdb
 
 		changedProperty = Name
+
+		changedProperty = FormatString
 
 	measure Total_Infracciones = COUNTROWS('fact_multas')
 		formatString: 0
@@ -14,12 +15,17 @@ table fact_multas
 
 		changedProperty = Name
 
-	measure Multas_Sin_Conductor =
+	measure Multas_Sin_Conductor = ```
 			
-			CALCULATE(
-			    SUM('fact_multas'[Importe_EUR]),
-			    ISBLANK('dim_conductores'[id_empleado])
-			)
+			VAR Fugas = 
+			    CALCULATE(
+			        SUM('fact_multas'[Importe_EUR]),
+			        ALL('dim_conductores'),
+			        ISBLANK('fact_multas'[id_empleado]) || 'fact_multas'[id_empleado] = ""
+			    )
+			RETURN
+			COALESCE(Fugas, 0)
+			```
 		formatString: 0
 		lineageTag: ab06348e-5a2d-48cc-b661-3d1383581675
 

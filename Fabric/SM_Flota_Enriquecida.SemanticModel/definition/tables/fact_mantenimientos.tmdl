@@ -8,11 +8,12 @@ table fact_mantenimientos
 			    SUM('fact_mantenimientos'[Coste_Total_Intervencion]),
 			    0
 			)
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
 		lineageTag: 7e66728b-7154-4ee6-a972-ce45154641e5
 
 		changedProperty = Name
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		changedProperty = FormatString
 
 	measure Total_Dias_Inmovilizado =
 			
@@ -22,6 +23,40 @@ table fact_mantenimientos
 			)
 		formatString: 0
 		lineageTag: c8c6d99d-d461-4c88-a3c3-646ffb487531
+
+		changedProperty = Name
+
+	measure Pct_Gasto_Correctivo = ```
+			
+			VAR GastoCorrectivo = 
+			    CALCULATE(
+			        [Gasto_Total_Mantenimiento],
+			        'fact_mantenimientos'[Tipo_Mantenimiento] = "Correctivo"
+			    )
+			RETURN
+			DIVIDE(GastoCorrectivo, [Gasto_Total_Mantenimiento], 0)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 1f1d9049-01ad-495e-9990-375847889a10
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure Vehiculos_SLA_Excedido =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('fact_mantenimientos'[VehicleID]),
+			    FILTER(
+			        'fact_mantenimientos',
+			        RELATED('dim_proveedores'[SLA_Dias]) > 0 &&
+			        'fact_mantenimientos'[Dias_Inmovilizado] > RELATED('dim_proveedores'[SLA_Dias])
+			    )
+			)
+		formatString: 0
+		lineageTag: 8fa26c47-3eb3-4d8c-92ba-da6812379a9e
 
 		changedProperty = Name
 

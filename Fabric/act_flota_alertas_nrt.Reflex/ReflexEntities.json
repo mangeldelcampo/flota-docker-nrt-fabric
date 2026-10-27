@@ -184,11 +184,162 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"steps\":[{\"id\":\"b8c24e7f-2067-43a1-8acc-fb1848ccc08b\",\"name\":\"ScalarSelectStep\",\"rows\":[{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"9d562b63-0257-4366-b3f0-b657171fd5a4\"}],\"kind\":\"AttributeReference\",\"name\":\"attribute\",\"type\":\"complex\"}],\"kind\":\"Attribute\",\"name\":\"AttributeSelector\"}]},{\"id\":\"9ebb620e-5d6f-4a0e-b59e-3421be9d1179\",\"name\":\"ScalarDetectStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"BecomesLessThan\"},{\"name\":\"value\",\"type\":\"number\",\"value\":10}],\"kind\":\"NumberBecomes\",\"name\":\"NumberBecomes\"},{\"arguments\":[],\"kind\":\"EachTime\",\"name\":\"OccurrenceOption\"}]},{\"id\":\"012689b8-bf87-494c-a5e5-b80710aa5988\",\"name\":\"DimensionalFilterAndOrStep\",\"rows\":[{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"And\"}],\"kind\":\"FilterModifier\",\"name\":\"DimensionalFilterModifier\"},{\"arguments\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"116a4c4c-9e3b-4529-9b47-aebaae2007ca\"}],\"kind\":\"AttributeReference\",\"name\":\"attribute\",\"type\":\"complex\"}],\"kind\":\"Attribute\",\"name\":\"AttributeSelector\"},{\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsGreaterThan\"},{\"name\":\"threshold\",\"type\":\"number\",\"value\":0}],\"kind\":\"NumberValueCondition\",\"name\":\"NumberValueCondition\"}]},{\"id\":\"1b9f2392-3f52-4cb0-b147-fce07c89d052\",\"name\":\"ActStep\",\"rows\":[{\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"recipients\",\"type\":\"array\",\"values\":[{\"name\":\"string\",\"type\":\"string\",\"value\":\"miguelangel.delcampo_tajamar365.com#EXT#@prepara900.onmicrosoft.com\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Alerta de Activator Alerta FuelLevel\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"La condición para \\\"Alerta FuelLevel\\\" se ha cumplido.\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}],\"kind\":\"TeamsMessage\",\"name\":\"TeamsBinding\"}]}],\"templateId\":\"AttributeTrigger\",\"templateVersion\":\"1.3.1\"}",
+        "instance": "{\"templateId\":\"AttributeTrigger\",\"templateVersion\":\"1.3.1\",\"steps\":[{\"name\":\"ScalarSelectStep\",\"id\":\"b8c24e7f-2067-43a1-8acc-fb1848ccc08b\",\"rows\":[{\"name\":\"AttributeSelector\",\"kind\":\"Attribute\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"9d562b63-0257-4366-b3f0-b657171fd5a4\"}],\"name\":\"attribute\"}]}]},{\"name\":\"ScalarDetectStep\",\"id\":\"9ebb620e-5d6f-4a0e-b59e-3421be9d1179\",\"rows\":[{\"name\":\"NumberBecomes\",\"kind\":\"NumberBecomes\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"BecomesLessThan\"},{\"name\":\"value\",\"type\":\"number\",\"value\":10.0}]},{\"name\":\"OccurrenceOption\",\"kind\":\"EachTime\",\"arguments\":[]}]},{\"name\":\"DimensionalFilterAndOrStep\",\"id\":\"012689b8-bf87-494c-a5e5-b80710aa5988\",\"rows\":[{\"name\":\"DimensionalFilterModifier\",\"kind\":\"FilterModifier\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"And\"}]},{\"name\":\"AttributeSelector\",\"kind\":\"Attribute\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"116a4c4c-9e3b-4529-9b47-aebaae2007ca\"}],\"name\":\"attribute\"}]},{\"name\":\"NumberValueCondition\",\"kind\":\"NumberValueCondition\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsGreaterThan\"},{\"name\":\"threshold\",\"type\":\"number\",\"value\":0.0}]}]},{\"name\":\"ActStep\",\"id\":\"1b9f2392-3f52-4cb0-b147-fce07c89d052\",\"rows\":[{\"name\":\"TeamsBinding\",\"kind\":\"TeamsMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"recipients\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"miguelangel.delcampo_tajamar365.com#EXT#@prepara900.onmicrosoft.com\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Alerta de Activator Alerta FuelLevel\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"La condición para \\\"Alerta FuelLevel\\\" se ha cumplido.\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
         "settings": {
           "shouldRun": true,
           "shouldApplyRuleOnUpdate": true,
           "delayToleranceMs": 120000
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae",
+    "payload": {
+      "name": "SM_Flota_Enriquecida",
+      "type": "pbiMetrics"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "12230251-0901-417c-8726-8f8dbfb02a1d",
+    "payload": {
+      "name": "PowerBI Metric",
+      "runSettings": {
+        "isStopped": false,
+        "executionIntervalInSeconds": 3600
+      },
+      "query": {
+        "queryString": "{\r\n  \"provider\": {},\r\n  \"metrics\": [\r\n    {\r\n      \"measure\": \"Velocidad_Media_Flota\"\r\n    }\r\n  ]\r\n}"
+      },
+      "metricDefinition": "{\"name\":\"Velocidad_Media_Flota\",\"definition\":{\"datasetId\":\"fea47372-7e87-9e30-47e6-87ce5b19e75d\",\"aggregation\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"telemetria_enriquecida\"}},\"Property\":\"Velocidad_Media_Flota\"},\"Name\":\"Velocidad_Media_Flota\"},\"dimensions\":[],\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"telemetria_enriquecida\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"dim_calendario\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"dim_hora\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"VehicleID\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'VEH-1001'\"}}],[{\"Literal\":{\"Value\":\"'VEH-1002'\"}}],[{\"Literal\":{\"Value\":\"'VEH-1004'\"}}],[{\"Literal\":{\"Value\":\"'VEH-1009'\"}}],[{\"Literal\":{\"Value\":\"'VEH-1018'\"}}],[{\"Literal\":{\"Value\":\"'VEH-1021'\"}}],[{\"Literal\":{\"Value\":\"'VEH-1003'\"}}]]}}},{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Anio\"}},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Mes_Num\"}},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Dia\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2026L\"}},{\"Literal\":{\"Value\":\"10L\"}},{\"Literal\":{\"Value\":\"26L\"}}]]}}},{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Hora\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"10L\"}}],[{\"Literal\":{\"Value\":\"11L\"}}],[{\"Literal\":{\"Value\":\"12L\"}}],[{\"Literal\":{\"Value\":\"13L\"}}],[{\"Literal\":{\"Value\":\"14L\"}}],[{\"Literal\":{\"Value\":\"18L\"}}],[{\"Literal\":{\"Value\":\"19L\"}}]]}}}]}},\"type\":\"DatasetMetric\"}",
+      "metadata": {
+        "datasetId": "fea47372-7e87-9e30-47e6-87ce5b19e75d",
+        "reportWorkspaceId": "43c901bd-0717-46ee-96f7-562666215b0a",
+        "reportId": "9bdf66aa-7f1b-4ee4-bc6d-d0cf7ec5b240",
+        "visualId": "fb33987f8ac08b001184",
+        "pageId": "8d4468d508ff9e2f7add",
+        "measureName": "Velocidad_Media_Flota",
+        "datasetWorkspaceId": "00000000-0000-0000-0000-000000000000"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      }
+    },
+    "type": "powerBiSource-v1"
+  },
+  {
+    "uniqueIdentifier": "157920ed-c616-40e5-b65e-d84733b7ba86",
+    "payload": {
+      "name": "SM_Flota_Enriquecida",
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"SourceEventStep\",\"id\":\"7cba1641-a1f1-41b9-ad91-47cf838543e6\",\"rows\":[{\"name\":\"SourceSelector\",\"kind\":\"SourceReference\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"12230251-0901-417c-8726-8f8dbfb02a1d\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "45de99ed-f3cd-409a-a027-d849d5f340f9",
+    "payload": {
+      "name": "Velocidad_Media_Flota",
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Object"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "ce2448b5-b022-4501-94af-6fad42ee71f7",
+    "payload": {
+      "name": "___type",
+      "parentObject": {
+        "targetUniqueIdentifier": "45de99ed-f3cd-409a-a027-d849d5f340f9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\":\"IdentityPartAttribute\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"IdPartStep\",\"id\":\"905f450f-4d53-45f4-8b51-015e5daea8ed\",\"rows\":[{\"name\":\"TypeAssertion\",\"kind\":\"TypeAssertion\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "4a19ea9f-2add-463b-8efc-b94a07e9a74d",
+    "payload": {
+      "name": "___type tuple",
+      "parentObject": {
+        "targetUniqueIdentifier": "45de99ed-f3cd-409a-a027-d849d5f340f9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\":\"IdentityTupleAttribute\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"IdStructureStep\",\"id\":\"77632b68-b473-4183-a411-6422cb6a905b\",\"rows\":[{\"name\":\"IdPart\",\"kind\":\"IdPart\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"ce2448b5-b022-4501-94af-6fad42ee71f7\"}],\"name\":\"idPart\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "67800ef4-e1b8-4d89-ad64-62637bc47ea8",
+    "payload": {
+      "name": "PowerBI Metric",
+      "parentObject": {
+        "targetUniqueIdentifier": "45de99ed-f3cd-409a-a027-d849d5f340f9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\":\"SplitEvent\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"SplitEventStep\",\"id\":\"bf344b8d-5fa9-4d76-94a2-cf9611a6f8af\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"157920ed-c616-40e5-b65e-d84733b7ba86\"}],\"name\":\"event\"}]},{\"name\":\"FieldIdMapping\",\"kind\":\"FieldIdMapping\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"___type\"},{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"ce2448b5-b022-4501-94af-6fad42ee71f7\"}],\"name\":\"idPart\"}]},{\"name\":\"SplitEventOptions\",\"kind\":\"EventOptions\",\"arguments\":[{\"name\":\"isAuthoritative\",\"type\":\"boolean\",\"value\":true}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "616b25f3-57eb-4317-aa45-511be7e37b8d",
+    "payload": {
+      "name": "Velocidad_Media_Flota",
+      "parentObject": {
+        "targetUniqueIdentifier": "45de99ed-f3cd-409a-a027-d849d5f340f9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"EventSelectStep\",\"id\":\"b6cd5763-317e-41d5-975a-1236935d28c3\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"67800ef4-e1b8-4d89-ad64-62637bc47ea8\"}],\"name\":\"event\"}]},{\"name\":\"EventFieldSelector\",\"kind\":\"EventField\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Velocidad_Media_Flota\"}]}]},{\"name\":\"EventComputeStep\",\"id\":\"8bd0007a-b913-4ebc-b13d-be3b3a9b2ec6\",\"rows\":[{\"name\":\"TypeAssertion\",\"kind\":\"TypeAssertion\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "e07045f3-a196-4179-a979-5ffb981a5819",
+    "payload": {
+      "name": "Velocidad_Media_Flota Alerta",
+      "parentObject": {
+        "targetUniqueIdentifier": "45de99ed-f3cd-409a-a027-d849d5f340f9"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "014dd2af-818b-4cd1-87e5-bb4569ca51ae"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"AttributeTrigger\",\"templateVersion\":\"1.2.3\",\"steps\":[{\"name\":\"ScalarSelectStep\",\"id\":\"f22bbc0b-6043-4e88-bf31-05544457ed7c\",\"rows\":[{\"name\":\"AttributeSelector\",\"kind\":\"Attribute\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"616b25f3-57eb-4317-aa45-511be7e37b8d\"}],\"name\":\"attribute\"}]}]},{\"name\":\"ScalarDetectStep\",\"id\":\"64e52708-b56c-4948-a0eb-3c38aaee7014\",\"rows\":[{\"name\":\"AnyValueChange\",\"kind\":\"AnyValueChange\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Changes\"}]},{\"name\":\"OccurrenceOption\",\"kind\":\"EachTime\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"9bcdbe04-1efd-4bc8-9e72-cd360dd048eb\",\"rows\":[{\"name\":\"TeamsBinding\",\"kind\":\"TeamsMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"\"},{\"name\":\"recipients\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"fabricMAC@prepara900.onmicrosoft.com\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Velocidad_Media_Flota Alerta\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The trigger condition has been met for your Power BI report\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Velocidad_Media_Flota\"},{\"kind\":\"AttributeReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"616b25f3-57eb-4317-aa45-511be7e37b8d\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
         }
       }
     },

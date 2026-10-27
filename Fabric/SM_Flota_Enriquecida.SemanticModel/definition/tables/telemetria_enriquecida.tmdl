@@ -110,6 +110,20 @@ table telemetria_enriquecida
 
 		changedProperty = Name
 
+	measure Nivel_Combustible_Actual =
+			
+			VAR MaxEventoEnContexto = MAX('telemetria_enriquecida'[Hora_Evento])
+			RETURN
+			CALCULATE(
+			    MAX('telemetria_enriquecida'[FuelLevel]),
+			    'telemetria_enriquecida'[Hora_Evento] = MaxEventoEnContexto
+			)
+		lineageTag: 1b06433f-49cc-428d-a688-44436ee2c9a0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column VehicleID
 		dataType: string
 		sourceProviderType: varchar(8000)

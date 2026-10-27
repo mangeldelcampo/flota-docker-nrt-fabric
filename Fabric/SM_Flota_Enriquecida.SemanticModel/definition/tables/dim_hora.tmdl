@@ -24,7 +24,7 @@ table dim_hora
 			    HorasFiltradas <= 3, ListaTexto,
 			    
 			    -- Si seleccionas muchas para no desbordar el texto
-			    HorasFiltradas & " horas seleccionadas (" & MIN('dim_hora'[Hora]) & ":00h - " & MAX('dim_hora'[Hora]) & ":00h)"
+			    HorasFiltradas & " horas (" & MIN('dim_hora'[Hora]) & ":00h - " & MAX('dim_hora'[Hora]) & ":00h)"
 			)
 			```
 		lineageTag: 66314b8f-eaed-4b84-9136-16e76d57cea2

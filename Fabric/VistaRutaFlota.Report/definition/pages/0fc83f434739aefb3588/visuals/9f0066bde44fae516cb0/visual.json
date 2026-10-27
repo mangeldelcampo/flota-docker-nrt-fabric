@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "9f0066bde44fae516cb0",
   "position": {
-    "x": 329.82954545454544,
-    "y": 408.06818181818181,
+    "x": 198.49624060150376,
+    "y": 593.68421052631572,
     "z": 0,
-    "height": 613.63636363636363,
-    "width": 1504.9431818181818,
+    "height": 487.21804511278191,
+    "width": 1521.203007518797,
     "tabOrder": 0
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "dim_conductores.nombre_conductor",
-              "nativeQueryRef": "nombre_conductor"
+              "nativeQueryRef": "Conductor / Empleado",
+              "displayName": "Conductor / Empleado"
             },
             {
               "field": {
@@ -41,7 +42,8 @@
                 }
               },
               "queryRef": "dim_conductores.turno",
-              "nativeQueryRef": "turno"
+              "nativeQueryRef": "Turno Asignado",
+              "displayName": "Turno Asignado"
             },
             {
               "field": {
@@ -55,7 +57,8 @@
                 }
               },
               "queryRef": "dim_conductores.vehiculo_asignado",
-              "nativeQueryRef": "vehiculo_asignado"
+              "nativeQueryRef": "Vehículo",
+              "displayName": "Vehículo"
             },
             {
               "field": {
@@ -69,26 +72,8 @@
                 }
               },
               "queryRef": "dim_conductores.Estado_Permiso",
-              "nativeQueryRef": "Estado_Permiso"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dim_conductores"
-                        }
-                      },
-                      "Property": "Saldo_Puntos_Inicial"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(dim_conductores.Saldo_Puntos_Inicial)",
-              "nativeQueryRef": "Suma de Saldo_Puntos_Inicial"
+              "nativeQueryRef": "Estado DGT / Carnet",
+              "displayName": "Estado DGT / Carnet"
             },
             {
               "field": {
@@ -98,11 +83,12 @@
                       "Entity": "dim_conductores"
                     }
                   },
-                  "Property": "2_Alerta_Operativa_RRHH"
+                  "Property": "1_Saldo_Puntos_Actual"
                 }
               },
-              "queryRef": "dim_conductores.2_Alerta_Operativa_RRHH",
-              "nativeQueryRef": "2_Alerta_Operativa_RRHH"
+              "queryRef": "dim_conductores.1_Saldo_Puntos_Actual",
+              "nativeQueryRef": "Saldo Puntos",
+              "displayName": "Saldo Puntos"
             },
             {
               "field": {
@@ -117,6 +103,21 @@
               },
               "queryRef": "dim_conductores.Alertas_Carnet",
               "nativeQueryRef": "Alertas_Carnet"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_conductores"
+                    }
+                  },
+                  "Property": "2_Alerta_Operativa_RRHH"
+                }
+              },
+              "queryRef": "dim_conductores.2_Alerta_Operativa_RRHH",
+              "nativeQueryRef": "Semáforo Operativo",
+              "displayName": "Semáforo Operativo"
             }
           ]
         }
@@ -125,13 +126,13 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
                     "Entity": "dim_conductores"
                   }
                 },
-                "Property": "nombre_conductor"
+                "Property": "2_Alerta_Operativa_RRHH"
               }
             },
             "direction": "Descending"
@@ -417,95 +418,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "6520786c26a83d79f492",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_conductores"
-              }
-            },
-            "Property": "turno"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9768f55b80584a07fb2a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_conductores"
-              }
-            },
-            "Property": "vehiculo_asignado"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4c616e1fada43a830d4e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_conductores"
-              }
-            },
-            "Property": "Estado_Permiso"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f667f48373f021a0c583",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "dim_conductores"
-                  }
-                },
-                "Property": "Saldo_Puntos_Inicial"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "13ca1b53ff33cb0db9cb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_conductores"
-              }
-            },
-            "Property": "2_Alerta_Operativa_RRHH"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "96ad7ca4364d038d0052",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_conductores"
-              }
-            },
-            "Property": "Alertas_Carnet"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }
