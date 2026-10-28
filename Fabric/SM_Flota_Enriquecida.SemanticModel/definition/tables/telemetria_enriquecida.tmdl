@@ -46,6 +46,11 @@ table telemetria_enriquecida
 
 	measure Es_Ultima_Posicion_En_Contexto = ```
 			
+			-- 1. Comprobamos si el usuario ha seleccionado explícitamente un vehículo en el segmentador exterior
+			VAR FiltroVehiculoActivo = ISFILTERED('telemetria_enriquecida'[VehicleID])
+			VAR TotalVehiculosSeleccionados = CALCULATE(DISTINCTCOUNT('telemetria_enriquecida'[VehicleID]), ALLSELECTED('telemetria_enriquecida'[VehicleID]))
+			
+			-- 2. Calculamos la marca de tiempo más reciente respetando la fecha y la hora activas
 			VAR MaxEventoVehiculoContexto = 
 			    CALCULATE(
 			        MAX('telemetria_enriquecida'[Hora_Evento]),
@@ -56,11 +61,19 @@ table telemetria_enriquecida
 			            'dim_hora'[Hora] 
 			        )
 			    )
-			RETURN 
+			
+			VAR EsUltimaPosicion = 
 			    IF(
 			        SELECTEDVALUE('telemetria_enriquecida'[Hora_Evento]) = MaxEventoVehiculoContexto,
 			        1,
 			        0
+			    )
+			
+			RETURN 
+			    IF(
+			        FiltroVehiculoActivo && TotalVehiculosSeleccionados = 1,
+			        1,                 -- Modo Histórico: 1 vehículo filtrado expresamente -> dibuja toda su ruta/traza
+			        EsUltimaPosicion   -- Modo Torre de Control: Varios o todos -> dibuja SOLO la última coordenada (45 puntos limpios)
 			    )
 			```
 		formatString: 0
