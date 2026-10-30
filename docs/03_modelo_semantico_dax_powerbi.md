@@ -45,7 +45,7 @@ El Modelo Semántico **`SM_Flota_Enriquecida`** constituye la Capa Oro corporati
 └────────────────────────────────────────┘
 └──────────────────────────────────────┘
 ```
-
+![modelo semantico](./imagenes/ModeloSemantico.png)
 ---
 ## 2. Catálogo Oficial de las 17 Relaciones Activas (1:N, Filtro Cruzado Único)
 
